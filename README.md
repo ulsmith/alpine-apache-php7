@@ -82,7 +82,7 @@ services:
     networks:
       - default
     volumes:
-      - ./public:/app
+      - ./:/app
 networks:
   default:
     external:
@@ -103,6 +103,10 @@ If you would like to add to this, expand on this, maybe you don't want to map yo
 FROM ulsmith/alpine-apache-php7
 MAINTAINER You <you@youremail.com>
 
-ADD /public /app
+ADD /public /app/public
 RUN chown -R apache:apache /app
 ```
+
+## Where Do I Put My Files
+
+Hmmm... you can place them in the /app folder, your application should be placed in the /app folder with public access being pushed through to /app/public. This alloows you to have your src files and other outside the public directory.
