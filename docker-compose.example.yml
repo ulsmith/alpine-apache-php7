@@ -1,0 +1,22 @@
+version: "2"
+services:
+  apache:
+    build: ./
+    labels:
+      - "traefik.backend=alpine"
+      - "traefik.frontend.rule=Host:alpine.docker.localhost"
+    environment:
+      - MYSQL_HOST=mysql
+      - APACHE_SERVER_NAME=alpine.docker.localhost
+      - PHP_SHORT_OPEN_TAG=On
+      - PHP_ERROR_REPORTING=E_ALL
+      - PHP_DISPLAY_ERRORS=On
+      - PHP_HTML_ERRORS=On
+    networks:
+      - default
+    volumes:
+      - ./public:/app
+networks:
+  default:
+    external:
+      name: docker_docker-localhost
