@@ -44,10 +44,9 @@ RUN mkdir /run/apache2 \
 	&& sed -i "s#/var/www/localhost/htdocs#/app/public#" /etc/apache2/httpd.conf \
 	&& printf "\n<Directory \"/app/public\">\n\tAllowOverride All\n</Directory>\n" >> /etc/apache2/httpd.conf
 
-RUN mkdir /app && mkdir /app/public
-RUN chown -R apache:apache /app
+RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app
 
-ADD start.sh /
+COPY ./start.sh /start.sh
 RUN chmod +x /start.sh
 
 EXPOSE 80
