@@ -46,7 +46,7 @@ RUN mkdir /run/apache2 \
 
 RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app
 
-COPY ./start.sh /start.sh
+ADD ./start.sh /
 RUN chmod +x /start.sh
 
 EXPOSE 80
