@@ -8,6 +8,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 RUN apk update && apk upgrade && apk add \
 	bash apache2 php7-apache2 curl ca-certificates git \
 	php7 \
+	php7-xdebug \
 	php7-phar \
 	php7-mcrypt \
 	php7-soap \
