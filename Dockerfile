@@ -1,9 +1,6 @@
 FROM alpine:edge
 MAINTAINER Paul Smith <pa.ulsmith.net>
 
-# Copy things first before RUN
-COPY start.sh /
-
 # Add repos
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
@@ -50,6 +47,7 @@ RUN mkdir /run/apache2 \
 
 RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app
 
+ADD start.sh /
 RUN chmod +x /start.sh
 
 EXPOSE 80
