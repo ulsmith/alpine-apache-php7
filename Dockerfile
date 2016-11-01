@@ -36,6 +36,7 @@ RUN apk update && apk upgrade && apk add \
 	php7-curl \
 	php7-ctype \
 	php7-session \
+	php7-redis \
 	&& cp /usr/bin/php7 /usr/bin/php \
     && rm -f /var/cache/apk/*
 
