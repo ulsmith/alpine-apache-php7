@@ -51,7 +51,10 @@ if [ ! -z "$PHP_SESSION_COOKIE_DOMAIN" ]; then sed -i "s/\;\?\\s\?session.cookie
 if [ ! -z "$PHP_SESSION_COOKIE_HTTPONLY" ]; then sed -i "s/\;\?\\s\?session.cookie_httponly = .*/session.cookie_httponly = $PHP_SESSION_COOKIE_HTTPONLY/" /etc/php7/php.ini && echo "Set PHP session.cookie_httponly = $PHP_SESSION_COOKIE_HTTPONLY..."; fi
 
 # Start (ensure apache2 PID not left behind first) to stop auto start crashes if didn't shut down properly
+
 echo "Clearing any old processes..."
 rm -f /run/apache2/apache2.pid
+rm -f /run/apache2/httpd.pid
+
 echo "Starting apache..."
 httpd -D FOREGROUND
