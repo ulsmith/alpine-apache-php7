@@ -41,6 +41,9 @@ RUN apk update && apk upgrade && apk add \
 	&& cp /usr/bin/php7 /usr/bin/php \
     && rm -f /var/cache/apk/*
 
+RUN curl -sS https://getcomposer.org/installer | php \
+	&& mv composer.phar /usr/local/bin/composer
+
 # Add apache to run and configure
 RUN mkdir /run/apache2 \
     && sed -i "s/#LoadModule\ rewrite_module/LoadModule\ rewrite_module/" /etc/apache2/httpd.conf \
@@ -52,9 +55,14 @@ RUN mkdir /run/apache2 \
     && sed -i "s#/var/www/localhost/htdocs#/app/public#" /etc/apache2/httpd.conf \
     && printf "\n<Directory \"/app/public\">\n\tAllowOverride All\n</Directory>\n" >> /etc/apache2/httpd.conf
 
+# enable xdebug coverage for testing with phpunit (already installed)
+RUN echo 'zend_extension=/usr/lib/php7/modules/xdebug.so' >> /etc/php7/php.ini \
+	&& echo 'xdebug.coverage_enable=On' >> /etc/php7/php.ini \
+	&& echo 'xdebug.remote_enable=1' >> /etc/php7/php.ini \
+	&& echo 'xdebug.remote_connect_back=1' >> /etc/php7/php.ini \
+	&& echo 'xdebug.remote_log=/tmp/xdebug.log' >> /etc/php7/php.ini \
+	&& echo 'xdebug.remote_autostart=true' >> /etc/php7/php.ini
+
 RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app && mkdir bootstrap
 ADD start.sh /bootstrap/
 RUN chmod +x /bootstrap/start.sh
-
-EXPOSE 80
-ENTRYPOINT ["/bootstrap/start.sh"]
