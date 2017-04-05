@@ -8,6 +8,7 @@ RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 RUN apk update && apk upgrade && apk add \
 	bash apache2 php7-apache2 curl ca-certificates git \
 	php7 \
+	php7-ftp \
 	php7-xdebug \
 	php7-phar \
 	php7-mcrypt \
@@ -36,13 +37,9 @@ RUN apk update && apk upgrade && apk add \
 	php7-curl \
 	php7-ctype \
 	php7-session \
-#	php7-redis \
-	php7-ftp \
+	php7-redis \
 	&& cp /usr/bin/php7 /usr/bin/php \
     && rm -f /var/cache/apk/*
-
-RUN curl -sS https://getcomposer.org/installer | php \
-	&& mv composer.phar /usr/local/bin/composer
 
 # Add apache to run and configure
 RUN mkdir /run/apache2 \
@@ -58,3 +55,6 @@ RUN mkdir /run/apache2 \
 RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app && mkdir bootstrap
 ADD start.sh /bootstrap/
 RUN chmod +x /bootstrap/start.sh
+
+EXPOSE 80
+ENTRYPOINT ["/bootstrap/start.sh"]
