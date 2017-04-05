@@ -4,9 +4,15 @@ MAINTAINER Paul Smith <pa.ulsmith.net>
 # Add repos
 RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
-# Setup apache and php
+# Add basics first
 RUN apk update && apk upgrade && apk add \
-	bash apache2 php7-apache2 curl ca-certificates git \
+	bash apache2 php7-apache2 curl ca-certificates git
+
+# Add Composer
+RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+
+# Setup apache and php
+RUN apk add \
 	php7 \
 	php7-ftp \
 	php7-xdebug \
