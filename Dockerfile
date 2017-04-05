@@ -55,14 +55,6 @@ RUN mkdir /run/apache2 \
     && sed -i "s#/var/www/localhost/htdocs#/app/public#" /etc/apache2/httpd.conf \
     && printf "\n<Directory \"/app/public\">\n\tAllowOverride All\n</Directory>\n" >> /etc/apache2/httpd.conf
 
-# enable xdebug coverage for testing with phpunit (already installed)
-RUN echo 'zend_extension=/usr/lib/php7/modules/xdebug.so' >> /etc/php7/php.ini \
-	&& echo 'xdebug.coverage_enable=On' >> /etc/php7/php.ini \
-	&& echo 'xdebug.remote_enable=1' >> /etc/php7/php.ini \
-	&& echo 'xdebug.remote_connect_back=1' >> /etc/php7/php.ini \
-	&& echo 'xdebug.remote_log=/tmp/xdebug.log' >> /etc/php7/php.ini \
-	&& echo 'xdebug.remote_autostart=true' >> /etc/php7/php.ini
-
 RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app && mkdir bootstrap
 ADD start.sh /bootstrap/
 RUN chmod +x /bootstrap/start.sh
