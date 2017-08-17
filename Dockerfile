@@ -33,6 +33,7 @@ RUN apk add \
 	php7-pdo_sqlite \
 	php7-gettext \
 	php7-xmlreader \
+	php7-xmlwriter \
 	php7-xmlrpc \
 	php7-bz2 \
 	php7-pdo_dblib \
