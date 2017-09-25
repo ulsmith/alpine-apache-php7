@@ -41,9 +41,12 @@ RUN apk add \
 	php7-curl \
 	php7-ctype \
 	php7-session \
-	php7-redis \
-	php7-simplexml \
-	&& cp /usr/bin/php7 /usr/bin/php \
+	php7-redis
+
+# Problems installing in above stack
+RUN apk add php7-simplexml
+
+RUN cp /usr/bin/php7 /usr/bin/php \
     && rm -f /var/cache/apk/*
 
 # Add apache to run and configure
