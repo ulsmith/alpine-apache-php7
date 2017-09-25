@@ -34,7 +34,6 @@ RUN apk add \
 	php7-gettext \
 	php7-xmlreader \
 	php7-xmlwriter \
-	php7-simplexml \
 	php7-tokenizer \
 	php7-xmlrpc \
 	php7-bz2 \
@@ -43,6 +42,7 @@ RUN apk add \
 	php7-ctype \
 	php7-session \
 	php7-redis \
+	php7-simplexml \
 	&& cp /usr/bin/php7 /usr/bin/php \
     && rm -f /var/cache/apk/*
 
