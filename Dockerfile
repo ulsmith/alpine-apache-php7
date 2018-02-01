@@ -41,7 +41,8 @@ RUN apk add \
 	php7-curl \
 	php7-ctype \
 	php7-session \
-	php7-redis
+	php7-redis \
+	php7-exif
 
 # Problems installing in above stack
 RUN apk add php7-simplexml
