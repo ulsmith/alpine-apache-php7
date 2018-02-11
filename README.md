@@ -96,6 +96,8 @@ __PHP_SESSION_COOKIE_DOMAIN:__ Maps to php.ini 'session.cookie_domain'
 
 __PHP_SESSION_COOKIE_HTTPONLY:__ Maps to php.ini 'session.cookie_httponly'
 
+__PHP_XDEBUG_ENABLED:__ Add this env and give it a value to turn it on, such as true, or On or Awesome, or beer, or socks... Turns on xdebug (which is not for production really)
+
 
 ## Usage
 
@@ -117,10 +119,15 @@ services:
       - PHP_ERROR_REPORTING=E_ALL
       - PHP_DISPLAY_ERRORS=On
       - PHP_HTML_ERRORS=On
+      - PHP_XDEBUG_ENABLED=true
     networks:
       - default
     volumes:
       - ./:/app
+	# ADD in permission for setting system time to host system time
+    cap_add:
+      - SYS_TIME
+      - SYS_NICE
 networks:
   default:
     external:

@@ -12,10 +12,14 @@ services:
       - PHP_ERROR_REPORTING=E_ALL
       - PHP_DISPLAY_ERRORS=On
       - PHP_HTML_ERRORS=On
+      - PHP_XDEBUG_ENABLED=true
     networks:
       - default
     volumes:
       - ./public:/app
+    cap_add:
+      - SYS_TIME
+      - SYS_NICE
 networks:
   default:
     external:

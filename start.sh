@@ -63,13 +63,16 @@ if [ ! -z "$PHP_SESSION_COOKIE_DOMAIN" ]; then sed -i "s/\;\?\\s\?session.cookie
 if [ ! -z "$PHP_SESSION_COOKIE_HTTPONLY" ]; then sed -i "s/\;\?\\s\?session.cookie_httponly = .*/session.cookie_httponly = $PHP_SESSION_COOKIE_HTTPONLY/" /etc/php7/php.ini && echo "Set PHP session.cookie_httponly = $PHP_SESSION_COOKIE_HTTPONLY..."; fi
 
 # enable xdebug coverage for testing with phpunit (already installed)
-echo "Enable XDebug for unit testing..."
-echo 'zend_extension=/usr/lib/php7/modules/xdebug.so' >> /etc/php7/php.ini;
-echo 'xdebug.coverage_enable=On' >> /etc/php7/php.ini;
-echo 'xdebug.remote_enable=1' >> /etc/php7/php.ini;
-echo 'xdebug.remote_connect_back=1' >> /etc/php7/php.ini;
-echo 'xdebug.remote_log=/tmp/xdebug.log' >> /etc/php7/php.ini;
-echo 'xdebug.remote_autostart=true' >> /etc/php7/php.ini;
+if [ ! -z "$PHP_XDEBUG_ENABLED" ]
+	then
+		echo "Enable XDebug..."
+		echo 'zend_extension=/usr/lib/php7/modules/xdebug.so' >> /etc/php7/php.ini;
+		echo 'xdebug.coverage_enable=On' >> /etc/php7/php.ini;
+		echo 'xdebug.remote_enable=1' >> /etc/php7/php.ini;
+		echo 'xdebug.remote_connect_back=1' >> /etc/php7/php.ini;
+		echo 'xdebug.remote_log=/tmp/xdebug.log' >> /etc/php7/php.ini;
+		echo 'xdebug.remote_autostart=true' >> /etc/php7/php.ini;
+fi
 
 # Start (ensure apache2 PID not left behind first) to stop auto start crashes if didn't shut down properly
 
