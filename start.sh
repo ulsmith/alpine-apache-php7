@@ -18,7 +18,7 @@ if [ ! -z "$APACHE_SERVER_NAME" ]
 		sed -i "s/#ServerName www.example.com:80/ServerName $APACHE_SERVER_NAME/" /etc/apache2/httpd.conf
 		echo "Changed server name to '$APACHE_SERVER_NAME'..."
 	else
-		echo "NOTICE: Change 'ServerName' globally and hide server message by setting environment variable >> 'SERVER_NAME=your.server.name' in docker command or docker-compose file"
+		echo "NOTICE: Change 'ServerName' globally and hide server message by setting environment variable >> 'APACHE_SERVER_NAME=your.server.name' in docker command or docker-compose file"
 fi
 
 # PHP Config
