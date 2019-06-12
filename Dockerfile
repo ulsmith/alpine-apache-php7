@@ -32,6 +32,7 @@ RUN apk add \
 	php7-pdo_mysql \
 	php7-pdo_sqlite \
 	php7-gettext \
+	php7-xml \
 	php7-xmlreader \
 	php7-xmlwriter \
 	php7-tokenizer \
@@ -42,7 +43,11 @@ RUN apk add \
 	php7-ctype \
 	php7-session \
 	php7-redis \
-	php7-exif
+	php7-exif \
+	php7-intl \
+	php7-fileinfo \
+	php7-ldap \
+	php7-apcu
 
 # Problems installing in above stack
 RUN apk add php7-simplexml
