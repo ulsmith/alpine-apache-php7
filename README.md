@@ -4,7 +4,11 @@ Provides a basic LAP stack using Alpine, Apache2 and PHP7, loading in the variou
 
 Should allow you to get going with a full LAP stack and support for DB via linked container (such as mysql) with ease, allowing you to fine tune various aspects of the server and php via environment variables.
 
+## Build
 
+```
+docker build . -t gsviec/php:7.3-alpine     
+```
 ## Included in this image
 
 bash, apache2, php7, php7-apache2, curl, ca-certificates, git
