@@ -1,4 +1,4 @@
-# Alpine LAP Server with Extensions
+# Alpine LAP Server with Extensions Phalcon  3.4
 
 Provides a basic LAP stack using Alpine, Apache2 and PHP7, loading in the various extensions along the way (see Dockerfile for full list).
 
