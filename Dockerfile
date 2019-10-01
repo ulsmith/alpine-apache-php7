@@ -68,6 +68,5 @@ RUN sed -i "s/#LoadModule\ rewrite_module/LoadModule\ rewrite_module/" /etc/apac
 RUN mkdir /app && mkdir /app/public && chown -R apache:apache /app && chmod -R 755 /app && mkdir bootstrap
 ADD start.sh /bootstrap/
 RUN chmod +x /bootstrap/start.sh
-RUN apk add 
 EXPOSE 80
 ENTRYPOINT ["/bootstrap/start.sh"]
