@@ -80,5 +80,8 @@ echo "Clearing any old processes..."
 rm -f /run/apache2/apache2.pid
 rm -f /run/apache2/httpd.pid
 
+# Just incase that the 'apache2' folder is missing in the container
+mkdir /run/apache2 > /dev/null
+
 echo "Starting apache..."
 httpd -D FOREGROUND
