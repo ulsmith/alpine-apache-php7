@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM alpine:3.8
 MAINTAINER Paul Smith <pa.ulsmith.net>
 
 # Add repos
